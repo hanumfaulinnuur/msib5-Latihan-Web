@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>form nilai</title>
+    <style>
+        body {
+            background-color: #e8e7e7;
+            font-family:'Times New Roman', Times, serif;
+        }
+
+        .container {
+            background-color: #fff;
+            max-width: 400px;
+            box-shadow: 0px 2px 2px 2px #c5c5c5;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 5px;
+        }
+
+
+        .container label {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+
+        }
+
+        .container input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #233dcf;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        table,th,td {
+            border: 1px solid #ccc;
+        }
+
+        th,td {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Menghitung Nilai Rata-Rata</h1>
+        <hr><br>
+        <form id="formNilai">
+            <label for="name">Nama :</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="mata_kuliah">Mata Kuliah :</label>
+            <input type="text" id="mata_kuliah" name="mata_kuliah" required><br>
+            <label for="nilai">Grade:</label>
+            <select id="nilai" name="nilai" required>
+                <option value="">Pilih Nilai</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+            </select><br><br>
+            <button type="button" onclick="hitung()">Hitung Nilai</button>
+        </form>
+        <table id="result">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Mata Kuliah</th>
+                    <th>Grade</th>
+                    <th>Nilai</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+
+        </table>
+    </div>
+</body>
+
+<script>
+    function hitung() {
+        const grade = {
+            A: 4,
+            B: 3,
+            C: 2,
+            D: 1,
+            E: 0
+        };
+
+        let name = document.getElementById("name").value;
+        let mata_kuliah = document.getElementById("mata_kuliah").value;
+        let pilih_nilai = document.getElementById("nilai").value;
+
+        if (pilih_nilai in grade) {
+            const nilai = grade[pilih_nilai];
+            const resultElement = document.getElementById("result");
+
+            const totalGradeValues = nilai;
+            const average = totalGradeValues / 1;
+
+            const table = document.getElementById("result").getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow( table.rows.length);
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+            const cell4 = newRow.insertCell(3);
+
+            cell1.innerHTML = name;
+            cell2.innerHTML = mata_kuliah;
+            cell3.innerHTML = pilih_nilai;
+            cell4.innerHTML = totalGradeValues.toFixed(2);
+        }
+
+    }
+</script>
+
+</html>
